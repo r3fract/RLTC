@@ -1,0 +1,524 @@
+/* Clean, modern design for Rainy Lake Trading Co. */
+:root {
+  --forest-green: #3D5C55;
+  --warm-cream: #F1EBDF;
+  --dark-forest: #1A2926;
+  --soft-white: #FEFDFB;
+  --warm-grey: #8B8680;
+  --accent-orange: #D98B6A;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  color: var(--dark-forest);
+  background: var(--soft-white);
+  overflow-x: hidden;
+}
+
+.hero-section {
+  min-height: 100vh;
+  background: 
+    linear-gradient(135deg, rgba(61, 92, 85, 0.05) 0%, rgba(241, 235, 223, 0.1) 100%),
+    url('https://onthisspot.ca/app/fortfrances/big/mountiesbridgeo.jpg') center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, 
+    rgba(254, 253, 251, 0.85) 0%, 
+    rgba(241, 235, 223, 0.75) 50%,
+    rgba(61, 92, 85, 0.05) 100%);
+  z-index: 1;
+}
+
+/* Header */
+.header {
+  position: relative;
+  z-index: 10;
+  padding: 2rem 2rem 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo-svg {
+  width: 40px;
+  height: 40px;
+}
+
+.logo-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--forest-green);
+  letter-spacing: -0.02em;
+}
+
+/* Hero Content */
+.hero-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 2rem;
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.hero-text {
+  max-width: 600px;
+  margin-bottom: 4rem;
+}
+
+.hero-text h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 600;
+  color: var(--dark-forest);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.hero-text p {
+  font-size: 1.125rem;
+  color: var(--warm-grey);
+  margin-bottom: 2rem;
+  line-height: 1.7;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--forest-green);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--accent-orange);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* Brand Cards */
+.brands-preview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 700px;
+}
+
+.brand-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(61, 92, 85, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.brand-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(61, 92, 85, 0.1);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.brand-logo {
+  width: 120px;
+  height: auto;
+  margin-bottom: 1rem;
+  max-height: 80px;
+  object-fit: contain;
+}
+
+.brand-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--forest-green);
+  margin-bottom: 0.5rem;
+}
+
+.brand-card p {
+  color: var(--warm-grey);
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.brand-link {
+  display: inline-block;
+  color: var(--forest-green);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--forest-green);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.brand-link:hover {
+  background: var(--forest-green);
+  color: white;
+}
+
+/* Footer */
+.footer {
+  position: relative;
+  z-index: 10;
+  padding: 2rem;
+  text-align: center;
+}
+
+.footer p {
+  color: var(--warm-grey);
+  font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-content {
+    padding: 2rem 1rem;
+  }
+  
+  .hero-text {
+    margin-bottom: 3rem;
+  }
+  
+  .brands-preview {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .brand-card {
+    padding: 1.5rem;
+  }
+  
+  .header {
+    padding: 1.5rem 1rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-text h1 {
+    font-size: 1.75rem;
+  }
+  
+  .hero-text p {
+    font-size: 1rem;
+  }
+  
+  .brand-card {
+    padding: 1.25rem;
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #F1EBDFcc;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.center-box {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 350px;
+  min-height: 200px;
+  padding: 3rem 2.5rem;
+  border-radius: 32px;
+  background: rgba(241, 235, 223, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(61, 92, 85, 0.25);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  border: 1.5px solid rgba(61, 92, 85, 0.25);
+}
+
+.coming-soon {
+  font-family: 'SF Pro Display', 'Segoe UI', Arial, sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #3D5C55;
+  letter-spacing: 0.04em;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.accent-bar {
+  width: 60px;
+  height: 6px;
+  border-radius: 3px;
+  background: #3D5C55;
+  margin: 1.5rem auto 0 auto;
+  opacity: 0.7;
+}
+
+@media (max-width: 600px) {
+  .center-box {
+    min-width: 90vw;
+    padding: 2rem 1rem;
+  }
+  .coming-soon {
+    font-size: 1.3rem;
+  }
+}
+
+/* Modern iOS 26-style glassmorphism for Rainy Lake Trading Co. */
+:root{
+  --overlay-color: rgba(241,235,223,0.38);
+  --accent: #3D5C55;
+  --wood: #8B5E3C;
+  --sunset: #D98B6A;
+  --stone: #E8E5E0;
+  --text-on-dark: #F7F4F1; /* readable on dark glass */
+  --dark-glass: rgba(8,12,10,0.62);
+  --glass-border: rgba(255,255,255,0.18);
+  --glass-border-2: rgba(0,0,0,0.18);
+  --glass-shadow: rgba(12,18,14,0.48);
+  --radius:28px;
+  --container-w: 1200px;
+}
+
+html,body{
+  height:100%;
+  margin:0;
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  color:var(--accent);
+}
+
+/* Background, overlays, and texture */
+body{
+  display:block;
+  min-height:100vh;
+  background: url('https://onthisspot.ca/app/fortfrances/big/mountiesbridgeo.jpg') center/cover no-repeat fixed;
+  position:relative;
+  overflow-x:hidden;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background: linear-gradient(180deg, rgba(241,235,223,0.26), rgba(241,235,223,0.44));
+  pointer-events:none;
+  z-index:0;
+  mix-blend-mode:soft-light;
+}
+
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image: radial-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(180deg, rgba(0,0,0,0.02), transparent);
+  background-size: 6px 6px, 100% 100%;
+  pointer-events:none;
+  z-index:1;
+  mix-blend-mode:overlay;
+}
+
+/* Global container */
+.container{
+  max-width:var(--container-w);
+  margin:0 auto;
+  padding:0 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+/* Header */
+.site-header{
+  position:relative;
+  z-index:60;
+  padding:14px 0;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  background: linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.02));
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+
+.logo{
+  display:flex;
+  gap:12px;
+  align-items:center;
+}
+
+.brand-name{
+  font-weight:800;
+  font-size:1.05rem;
+  letter-spacing:0.02em;
+  color:var(--accent);
+}
+.brand-sub{
+  font-size:0.8rem;
+  color: rgba(61,92,85,0.68);
+  margin-top:2px;
+}
+
+.quick-nav ul{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex;
+  gap:18px;
+  align-items:center;
+}
+
+.quick-nav a{
+  text-decoration:none;
+  color:var(--text-on-dark);
+  background: transparent;
+  font-weight:700;
+  padding:8px 12px;
+  border-radius:10px;
+  transition: all .18s ease;
+}
+.quick-nav a:hover, .quick-nav a:focus{
+  color:var(--stone);
+  background: rgba(255,255,255,0.06);
+  transform: translateY(-3px);
+  outline: none;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+.quick-nav a:focus{ box-shadow: 0 0 0 3px rgba(61,92,85,0.14); }
+
+/* Hero layout */
+.hero{
+  position:relative;
+  z-index:4;
+  padding: clamp(36px, 8vh, 84px) 0 120px;
+}
+
+.center-wrap{
+  max-width:1100px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns: 1fr 360px;
+  gap: clamp(24px, 4vw, 48px);
+  align-items:start;
+  padding:0 20px;
+}
+
+.lead{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.lead-card{
+  border-radius:20px;
+  padding:28px 30px;
+  max-width:880px;
+  background: linear-gradient(180deg, rgba(8,12,10,0.64), rgba(8,12,10,0.46));
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 28px 80px var(--glass-shadow);
+  backdrop-filter: blur(18px) saturate(120%);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+}
+
+.long-title{
+  margin:0 0 6px 0;
+  font-size: clamp(1.8rem, 4.2vw, 3.2rem);
+  line-height:1.06;
+  color:var(--text-on-dark);
+  text-shadow: none; /* remove heavy shadow for clarity */
+  letter-spacing:-0.01em;
+}
+
+.lead-copy{
+  margin:0;
+  font-size: clamp(1rem, 1.6vw, 1.125rem);
+  color: rgba(247,244,241,0.92);
+  max-width:60ch;
+  line-height:1.6;
+}
+
+/* Center-box tweaks: make it secondary and readable */
+.center-box{
+  width:100%;
+  padding:20px 22px;
+  border-radius:18px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(241,235,223,0.02));
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.coming-soon{ color:var(--accent); font-size:1.5rem; }
+.tagline{ color: rgba(61,92,85,0.92); }
+
+/* Mini cards refined with stronger hierarchy */
+.mini-grid{ gap:20px; }
+.mini-card{ padding:14px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:12px; }
+.mini-card h3{ margin:0; font-size:1.06rem; color:#18221E; font-weight:800; }
+.mc-sub{ color:#40524E; }
+
+/* make image tiles more legible with overlay and tone */
+.mc-image{ position:relative; }
+.mc-image::after{ content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.06)); border-radius:10px; }
+
+/* improve footer contrast */
+.site-footer{ background: linear-gradient(180deg, rgba(0,0,0,0.03), rgba(0,0,0,0.06)); padding:36px 0; }
+.site-footer small{ color: rgba(247,244,241,0.9); }
+
+/* Responsive tweaks */
+@media (max-width: 980px){
+  .center-wrap{ grid-template-columns: 1fr; }
+  .lead-card{ padding:20px; }
+  .mini-grid{ grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 520px){
+  .long-title{ font-size:1.25rem; }
+  .lead-card{ padding:14px; border-radius:14px; }
+  .center-box{ padding:14px; }
+}
+
+/* accessibility: prefers-reduced-motion */
+@media (prefers-reduced-motion:reduce){
+  .center-box,.mini-card,.accent-bar::after{ transition:none; animation:none; transform:none; }
+}
+
+:focus{ outline: none; }
