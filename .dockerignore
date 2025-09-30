@@ -1,0 +1,16 @@
+# Docker ignore file for RLTC website
+.git
+.gitignore
+README.md
+.env
+.env.local
+.env.*.local
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+Thumbs.db
+templates/
+*.md
+!README.md
