@@ -1,4 +1,20 @@
-// Shared Components JavaScript
+// Sh  <header class="shared-hea  <footer class="shared-footer">
+    <div class="shared-footer-content">
+      <p><a href="/">Rainy Lake Trading Co.</a> • <a href="/stays">Pine & Stone Stays</a> • <a href="/about">About Riley</a> • <a href="https://order.penaltyboxcanteen.com" target="_blank">Penalty Box Canteen</a></p>
+      <small>Fort Frances, Northwestern Ontario business collective • Serving the Rainy River District with northern pride and entrepreneurial spirit since 2024</small>
+    </div>
+  </footer>`
+    <a href="/" class="shared-logo">
+      <img src="assets/img/{{LOGO_IMG}}" alt="{{LOGO_ALT}}" class="shared-logo-img">
+      <div class="shared-logo-text">
+        <h1>{{LOGO_TITLE}}</h1>
+        <p>{{LOGO_SUBTITLE}}</p>
+      </div>
+    </a>
+    <nav class="shared-nav">
+      {{NAV_LINKS}}
+    </nav>
+  </header>`nts JavaScript
 // This file manages the header and footer content across all pages
 
 // Shared Header HTML
@@ -29,14 +45,36 @@ const sharedFooterHTML = `
 
 // Page-specific configurations
 const pageConfigs = {
+  '/': {
+    logoImg: 'rltc.png',
+    logoAlt: 'Rainy Lake Trading Co.',
+    logoTitle: 'Rainy Lake Trading Co.',
+    logoSubtitle: 'Northwestern Ontario Business Collective',
+    navLinks: `
+      <a href="/stays" class="shared-nav-link">Pine & Stone Stays</a>
+      <a href="/about" class="shared-nav-link">About Riley</a>
+      <a href="https://order.penaltyboxcanteen.com" target="_blank" class="shared-nav-link">Penalty Box Canteen</a>
+    `
+  },
   'index.html': {
     logoImg: 'rltc.png',
     logoAlt: 'Rainy Lake Trading Co.',
     logoTitle: 'Rainy Lake Trading Co.',
     logoSubtitle: 'Northwestern Ontario Business Collective',
     navLinks: `
-      <a href="pine-stone.html" class="shared-nav-link">Pine & Stone Stays</a>
-      <a href="about.html" class="shared-nav-link">About Riley</a>
+      <a href="/stays" class="shared-nav-link">Pine & Stone Stays</a>
+      <a href="/about" class="shared-nav-link">About Riley</a>
+      <a href="https://order.penaltyboxcanteen.com" target="_blank" class="shared-nav-link">Penalty Box Canteen</a>
+    `
+  },
+  '/stays': {
+    logoImg: 'pass.png',
+    logoAlt: 'Pine & Stone Stays',
+    logoTitle: 'Pine & Stone Stays',
+    logoSubtitle: 'Northwestern Ontario Short-Term Rental',
+    navLinks: `
+      <a href="/" class="shared-nav-link back-link">← Rainy Lake Trading Co.</a>
+      <a href="/about" class="shared-nav-link">About Riley</a>
       <a href="https://order.penaltyboxcanteen.com" target="_blank" class="shared-nav-link">Penalty Box Canteen</a>
     `
   },
@@ -46,8 +84,19 @@ const pageConfigs = {
     logoTitle: 'Pine & Stone Stays',
     logoSubtitle: 'Northwestern Ontario Short-Term Rental',
     navLinks: `
-      <a href="index.html" class="shared-nav-link back-link">← Rainy Lake Trading Co.</a>
-      <a href="about.html" class="shared-nav-link">About Riley</a>
+      <a href="/" class="shared-nav-link back-link">← Rainy Lake Trading Co.</a>
+      <a href="/about" class="shared-nav-link">About Riley</a>
+      <a href="https://order.penaltyboxcanteen.com" target="_blank" class="shared-nav-link">Penalty Box Canteen</a>
+    `
+  },
+  '/about': {
+    logoImg: 'rltc.png',
+    logoAlt: 'Rainy Lake Trading Co.',
+    logoTitle: 'Rainy Lake Trading Co.',
+    logoSubtitle: 'Meet Riley Pollard',
+    navLinks: `
+      <a href="/" class="shared-nav-link">Home</a>
+      <a href="/stays" class="shared-nav-link">Pine & Stone Stays</a>
       <a href="https://order.penaltyboxcanteen.com" target="_blank" class="shared-nav-link">Penalty Box Canteen</a>
     `
   },
@@ -57,8 +106,8 @@ const pageConfigs = {
     logoTitle: 'Rainy Lake Trading Co.',
     logoSubtitle: 'Meet Riley Pollard',
     navLinks: `
-      <a href="index.html" class="shared-nav-link">Home</a>
-      <a href="pine-stone.html" class="shared-nav-link">Pine & Stone Stays</a>
+      <a href="/" class="shared-nav-link">Home</a>
+      <a href="/stays" class="shared-nav-link">Pine & Stone Stays</a>
       <a href="https://order.penaltyboxcanteen.com" target="_blank" class="shared-nav-link">Penalty Box Canteen</a>
     `
   }
@@ -67,14 +116,25 @@ const pageConfigs = {
 // Function to get current page name
 function getCurrentPageName() {
   const path = window.location.pathname;
+  
+  // Handle clean URLs
+  if (path === '/' || path === '/index' || path === '') {
+    return '/';
+  } else if (path === '/stays') {
+    return '/stays';
+  } else if (path === '/about') {
+    return '/about';
+  }
+  
+  // Handle .html files (fallback for direct access)
   const pageName = path.split('/').pop() || 'index.html';
-  return pageName === '' ? 'index.html' : pageName;
+  return pageName === '' ? '/' : pageName;
 }
 
 // Function to load shared components
 function loadSharedComponents() {
   const currentPage = getCurrentPageName();
-  const config = pageConfigs[currentPage] || pageConfigs['index.html'];
+  const config = pageConfigs[currentPage] || pageConfigs['/'];
   
   // Replace placeholders in header HTML
   let headerHTML = sharedHeaderHTML
