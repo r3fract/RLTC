@@ -211,21 +211,48 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
+  .hero-section {
+    background-size: cover;
+    background-position: center;
+  }
+
   .hero-content {
     padding: 2rem 1rem;
+    margin-top: 1rem;
   }
   
   .hero-text {
     margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .hero-text h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .hero-text p {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    max-width: 100%;
   }
   
   .brands-preview {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 1.5rem;
+    max-width: 100%;
   }
   
   .brand-card {
     padding: 1.5rem;
+    text-align: center;
+  }
+
+  .brand-logo {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1rem auto;
   }
   
   .header {
@@ -234,16 +261,65 @@ body {
 }
 
 @media (max-width: 480px) {
+  .hero-content {
+    padding: 1.5rem 1rem;
+  }
+
   .hero-text h1 {
     font-size: 1.75rem;
+    line-height: 1.3;
   }
   
   .hero-text p {
     font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .brands-preview {
+    gap: 1rem;
   }
   
   .brand-card {
     padding: 1.25rem;
+  }
+
+  .brand-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .brand-card p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  .brand-link {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .hero-content {
+    padding: 1rem 0.75rem;
+  }
+
+  .hero-text h1 {
+    font-size: 1.5rem;
+  }
+
+  .hero-text p {
+    font-size: 0.95rem;
+  }
+
+  .brand-card {
+    padding: 1rem;
+  }
+
+  .brand-logo {
+    width: 50px;
+    height: 50px;
   }
 }
 
