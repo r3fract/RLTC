@@ -384,6 +384,37 @@ body {
   transform: translateY(0);
 }
 
+/* Brand Story Section */
+.brand-story {
+  background: rgba(61, 92, 85, 0.05);
+  border-radius: 16px;
+  padding: 2rem;
+  margin: 2rem 0;
+  border: 1px solid rgba(61, 92, 85, 0.1);
+}
+
+.brand-story h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--forest-green);
+  margin-bottom: 1rem;
+}
+
+.brand-story p {
+  color: var(--dark-forest);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.brand-story p:last-child {
+  margin-bottom: 0;
+}
+
+.brand-story strong {
+  color: var(--forest-green);
+  font-weight: 600;
+}
+
 .amenities-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -527,9 +558,13 @@ body {
     padding: 0.2rem 0.5rem;
   }
   
+  .gallery-section {
+    margin-bottom: 0.5rem;
+  }
+  
   .gallery-grid {
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(6, 200px);
+    grid-template-rows: repeat(4, 200px);
   }
   
   .gallery-item.main-photo {
@@ -543,7 +578,11 @@ body {
   
   .amenities-section {
     padding: 1.5rem;
-    margin-top: 2rem;
+    margin-top: 0.5rem;
+  }
+  
+  .amenities-section h3 {
+    margin-top: 0;
   }
   
   .amenities-grid {
