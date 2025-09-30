@@ -51,8 +51,8 @@ const pageConfigs = {
     logoTitle: 'Rainy Lake Trading Co.',
     logoSubtitle: 'Northwestern Ontario Business Collective',
     navLinks: `
-      <a href="/stays" class="shared-nav-link">Pine & Stone Stays</a>
       <a href="/about" class="shared-nav-link">About Riley</a>
+      <a href="https://pineandstonestays.ca" class="shared-nav-link">Pine & Stone Stays</a>
       <a href="https://order.penaltyboxcanteen.com" target="_blank" class="shared-nav-link">Penalty Box Canteen</a>
     `
   },
@@ -62,8 +62,8 @@ const pageConfigs = {
     logoTitle: 'Rainy Lake Trading Co.',
     logoSubtitle: 'Northwestern Ontario Business Collective',
     navLinks: `
-      <a href="/stays" class="shared-nav-link">Pine & Stone Stays</a>
       <a href="/about" class="shared-nav-link">About Riley</a>
+      <a href="https://pineandstonestays.ca" class="shared-nav-link">Pine & Stone Stays</a>
       <a href="https://order.penaltyboxcanteen.com" target="_blank" class="shared-nav-link">Penalty Box Canteen</a>
     `
   },
@@ -75,6 +75,7 @@ const pageConfigs = {
     navLinks: `
       <a href="/" class="shared-nav-link back-link">← Rainy Lake Trading Co.</a>
       <a href="/about" class="shared-nav-link">About Riley</a>
+      <a href="https://pineandstonestays.ca" class="shared-nav-link">Visit Pine & Stone Site</a>
       <a href="https://order.penaltyboxcanteen.com" target="_blank" class="shared-nav-link">Penalty Box Canteen</a>
     `
   },
@@ -86,6 +87,7 @@ const pageConfigs = {
     navLinks: `
       <a href="/" class="shared-nav-link back-link">← Rainy Lake Trading Co.</a>
       <a href="/about" class="shared-nav-link">About Riley</a>
+      <a href="https://pineandstonestays.ca" class="shared-nav-link">Visit Pine & Stone Site</a>
       <a href="https://order.penaltyboxcanteen.com" target="_blank" class="shared-nav-link">Penalty Box Canteen</a>
     `
   },
@@ -96,7 +98,7 @@ const pageConfigs = {
     logoSubtitle: 'Meet Riley Pollard',
     navLinks: `
       <a href="/" class="shared-nav-link">Home</a>
-      <a href="/stays" class="shared-nav-link">Pine & Stone Stays</a>
+      <a href="https://pineandstonestays.ca" class="shared-nav-link">Pine & Stone Stays</a>
       <a href="https://order.penaltyboxcanteen.com" target="_blank" class="shared-nav-link">Penalty Box Canteen</a>
     `
   },
@@ -107,7 +109,7 @@ const pageConfigs = {
     logoSubtitle: 'Meet Riley Pollard',
     navLinks: `
       <a href="/" class="shared-nav-link">Home</a>
-      <a href="/stays" class="shared-nav-link">Pine & Stone Stays</a>
+      <a href="https://pineandstonestays.ca" class="shared-nav-link">Pine & Stone Stays</a>
       <a href="https://order.penaltyboxcanteen.com" target="_blank" class="shared-nav-link">Penalty Box Canteen</a>
     `
   }
