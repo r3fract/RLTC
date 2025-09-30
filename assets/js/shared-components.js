@@ -97,7 +97,7 @@ const pageConfigs = {
     logoTitle: 'Rainy Lake Trading Co.',
     logoSubtitle: 'Meet Riley Pollard',
     navLinks: `
-      <a href="/" class="shared-nav-link">Home</a>
+      <a href="/" class="shared-nav-link">← Home</a>
       <a href="https://pineandstonestays.ca" class="shared-nav-link">Pine & Stone Stays</a>
       <a href="https://order.penaltyboxcanteen.com" target="_blank" class="shared-nav-link">Penalty Box Canteen</a>
     `
@@ -108,7 +108,7 @@ const pageConfigs = {
     logoTitle: 'Rainy Lake Trading Co.',
     logoSubtitle: 'Meet Riley Pollard',
     navLinks: `
-      <a href="/" class="shared-nav-link">Home</a>
+      <a href="/" class="shared-nav-link">← Home</a>
       <a href="https://pineandstonestays.ca" class="shared-nav-link">Pine & Stone Stays</a>
       <a href="https://order.penaltyboxcanteen.com" target="_blank" class="shared-nav-link">Penalty Box Canteen</a>
     `
@@ -118,6 +118,8 @@ const pageConfigs = {
 // Function to get current page name
 function getCurrentPageName() {
   const path = window.location.pathname;
+  
+  console.log('Current path:', path); // Debug logging
   
   // Handle clean URLs
   if (path === '/' || path === '/index' || path === '') {
@@ -129,14 +131,27 @@ function getCurrentPageName() {
   }
   
   // Handle .html files (fallback for direct access)
-  const pageName = path.split('/').pop() || 'index.html';
+  const pageName = path.split('/').pop() || '/';
+  if (pageName === 'index.html') {
+    return '/';
+  } else if (pageName === 'about.html') {
+    return '/about';
+  } else if (pageName === 'pine-stone.html') {
+    return '/stays';
+  }
+  
   return pageName === '' ? '/' : pageName;
 }
 
 // Function to load shared components
 function loadSharedComponents() {
+  console.log('Loading shared components...'); // Debug logging
+  
   const currentPage = getCurrentPageName();
+  console.log('Detected page:', currentPage); // Debug logging
+  
   const config = pageConfigs[currentPage] || pageConfigs['/'];
+  console.log('Using config:', config); // Debug logging
   
   // Replace placeholders in header HTML
   let headerHTML = sharedHeaderHTML
@@ -150,14 +165,31 @@ function loadSharedComponents() {
   const headerPlaceholder = document.getElementById('shared-header-placeholder');
   if (headerPlaceholder) {
     headerPlaceholder.outerHTML = headerHTML;
+    console.log('Header loaded successfully'); // Debug logging
+  } else {
+    console.error('Header placeholder not found'); // Debug logging
   }
   
   // Find and replace footer placeholder
   const footerPlaceholder = document.getElementById('shared-footer-placeholder');
   if (footerPlaceholder) {
     footerPlaceholder.outerHTML = sharedFooterHTML;
+    console.log('Footer loaded successfully'); // Debug logging
+  } else {
+    console.error('Footer placeholder not found'); // Debug logging
   }
 }
 
 // Load components when DOM is ready
-document.addEventListener('DOMContentLoaded', loadSharedComponents);
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('DOM loaded, initializing shared components...'); // Debug logging
+  loadSharedComponents();
+});
+
+// Fallback: also try loading after a short delay in case DOMContentLoaded already fired
+setTimeout(function() {
+  if (!document.getElementById('shared-header-placeholder')) {
+    console.log('Fallback loading shared components...'); // Debug logging
+    loadSharedComponents();
+  }
+}, 100);
