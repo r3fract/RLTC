@@ -1,11 +1,14 @@
-# Use nginx as the base image
+# Simple single-page website container
 FROM nginx:alpine
 
-# Copy the website files to nginx html directory
-COPY . /usr/share/nginx/html/
+# Copy single-page website
+COPY index.html /usr/share/nginx/html/
 
-# Copy custom nginx configuration
-COPY nginx.conf /etc/nginx/nginx.conf
+# Copy images
+COPY assets/img/ /usr/share/nginx/html/assets/img/
+
+# Copy simple nginx config
+COPY nginx-simple.conf /etc/nginx/conf.d/default.conf
 
 # Expose port 80
 EXPOSE 80

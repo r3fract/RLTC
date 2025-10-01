@@ -5,16 +5,3 @@ services:
     restart: unless-stopped
     ports:
       - "80:80"
-      - "443:443"
-    volumes:
-      # Mount SSL certificates (adjust paths as needed)
-      - ./ssl:/etc/nginx/ssl:ro
-    environment:
-      - DOMAIN_PRIMARY=rainylaketrading.co
-      - DOMAIN_SECONDARY=pineandstonestays.ca
-    networks:
-      - web
-
-networks:
-  web:
-    external: true

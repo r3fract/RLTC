@@ -46,51 +46,684 @@
       "latitude": "48.6075",
       "longitude": "-93.4094"
     },
-    "areaServed": "Rainy River District",
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Northwestern Ontario Business Services",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "LodgingBusiness",
-            "name": "Pine & Stone Stays",
-            "description": "Premium short-term rental accommodation"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Restaurant",
-            "name": "Penalty Box Canteen",
-            "description": "Comfort food and community dining"
-          }
-        }
-      ]
-    }
+    "areaServed": "Rainy River District"
   }
   </script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/shared-components.css">
   <link rel="stylesheet" href="assets/css/style.css">
-  <script src="assets/js/shared-components.js"></script>
+  <style>
+    /* Mobile-first single page styles */
+    :root {
+      --forest-green: #3D5C55;
+      --warm-cream: #F1EBDF;
+      --dark-forest: #1A2926;
+      --soft-white: #FEFDFB;
+      --warm-grey: #8B8680;
+      --accent-orange: #D98B6A;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      color: var(--dark-forest);
+      background: var(--soft-white);
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(254, 253, 251, 0.95);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(61, 92, 85, 0.1);
+      z-index: 1000;
+      padding: 0.75rem 1rem;
+      margin: 0;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .logo img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+
+    .logo-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--forest-green);
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .logo-text p {
+      font-size: 0.8rem;
+      color: var(--warm-grey);
+      margin: 0;
+      font-weight: 500;
+      display: none;
+    }
+
+    .nav-menu {
+      display: none;
+      gap: 1rem;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--forest-green);
+      font-weight: 500;
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+      background: var(--warm-cream);
+    }
+
+    /* Mobile menu button */
+    .mobile-menu-btn {
+      display: block;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--forest-green);
+      cursor: pointer;
+    }
+
+    /* Sections */
+    .section {
+      padding: 3rem 0;
+      width: 100%;
+      position: relative;
+    }
+
+    .section-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .section:first-of-type {
+      margin-top: 60px;
+    }
+
+    .section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--forest-green);
+      margin-bottom: 1rem;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+    }
+
+    .section-logo {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto 1.5rem auto;
+      position: relative;
+      z-index: 2;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 50%;
+      padding: 1rem;
+      box-shadow: 0 8px 25px rgba(61, 92, 85, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .section-logo:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 35px rgba(61, 92, 85, 0.25);
+    }
+
+    /* About Section Background */
+    #about {
+      width: 100%;
+      min-height: 50vh;
+      background: 
+        linear-gradient(135deg, rgba(254, 253, 251, 0.70) 0%, rgba(241, 235, 223, 0.65) 100%),
+        url('https://onthisspot.ca/app/fortfrances/big/rainylakequartero.jpg') center/cover no-repeat;
+      background-size: cover;
+      background-position: center center;
+      background-attachment: scroll;
+    }
+
+    #about::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, 
+        rgba(254, 253, 251, 0.70) 0%, 
+        rgba(241, 235, 223, 0.65) 100%);
+      z-index: 1;
+    }
+
+    /* Pine & Stone Section Background */
+    #stays {
+      width: 100%;
+      min-height: 60vh;
+      background: 
+        linear-gradient(135deg, rgba(254, 253, 251, 0.68) 0%, rgba(241, 235, 223, 0.62) 100%),
+        url('https://onthisspot.ca/app/fortfrances/big/causewayviewo.jpg') center/cover no-repeat;
+      background-size: cover;
+      background-position: center center;
+      background-attachment: scroll;
+    }
+
+    #stays::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, 
+        rgba(254, 253, 251, 0.68) 0%, 
+        rgba(241, 235, 223, 0.62) 100%);
+      z-index: 1;
+    }
+
+    /* Penalty Box Section Background */
+    #penalty-box {
+      width: 100%;
+      min-height: 50vh;
+      background: 
+        linear-gradient(135deg, rgba(254, 253, 251, 0.70) 0%, rgba(241, 235, 223, 0.65) 100%),
+        url('https://onthisspot.ca/app/fortfrances/big/mountiesbridgeo.jpg') center/cover no-repeat;
+      background-size: cover;
+      background-position: center center;
+      background-attachment: scroll;
+    }
+
+    #penalty-box::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, 
+        rgba(254, 253, 251, 0.70) 0%, 
+        rgba(241, 235, 223, 0.65) 100%);
+      z-index: 1;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 3rem 0;
+      width: 100%;
+      min-height: 60vh;
+      background: 
+        linear-gradient(135deg, rgba(254, 253, 251, 0.65) 0%, rgba(241, 235, 223, 0.55) 50%, rgba(61, 92, 85, 0.05) 100%),
+        url('https://onthisspot.ca/app/fortfrances/big/mountiesbridgeo.jpg') center/cover no-repeat;
+      background-size: cover;
+      background-position: center center;
+      background-attachment: scroll;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, 
+        rgba(254, 253, 251, 0.65) 0%, 
+        rgba(241, 235, 223, 0.55) 50%,
+        rgba(61, 92, 85, 0.05) 100%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+      width: 100%;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: var(--forest-green);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+      text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--dark-forest);
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7);
+    }
+
+    /* Brands Grid */
+    .brands-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .brand-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(61, 92, 85, 0.08);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .brand-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .brand-logo {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin-bottom: 1rem;
+    }
+
+    .brand-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--forest-green);
+      margin-bottom: 0.5rem;
+    }
+
+    .brand-card p {
+      color: var(--warm-grey);
+      margin-bottom: 1rem;
+    }
+
+    .brand-link {
+      display: inline-block;
+      background: var(--forest-green);
+      color: white;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .brand-link:hover {
+      background: var(--dark-forest);
+    }
+
+    /* About Section */
+    .about-hero {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .riley-photo {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      justify-self: center;
+    }
+
+    .about-text h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--forest-green);
+      margin-bottom: 1rem;
+      text-shadow: 0 1px 3px rgba(255, 255, 255, 0.7);
+      text-align: center;
+    }
+
+    .about-text p {
+      color: var(--dark-forest);
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 1.5rem auto;
+    }
+
+    /* Consistent section content styling */
+    .section-content h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--forest-green);
+      margin-bottom: 1rem;
+      text-shadow: 0 1px 3px rgba(255, 255, 255, 0.7);
+      text-align: center;
+    }
+
+    .awards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .award-card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(61, 92, 85, 0.08);
+      text-align: center;
+    }
+
+    .award-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .award-card h4 {
+      color: var(--forest-green);
+      margin-bottom: 0.5rem;
+    }
+
+    .award-org {
+      color: var(--warm-grey);
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Pine & Stone Section */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .photo-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      color: white;
+      padding: 1rem;
+      font-weight: 600;
+    }
+
+    .amenities-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .amenity-category {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(61, 92, 85, 0.08);
+    }
+
+    .amenity-category h4 {
+      color: var(--forest-green);
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .amenity-category ul {
+      list-style: none;
+    }
+
+    .amenity-category li {
+      padding: 0.25rem 0;
+      color: var(--warm-grey);
+      position: relative;
+      padding-left: 1rem;
+    }
+
+    .amenity-category li:before {
+      content: "•";
+      color: var(--accent-orange);
+      position: absolute;
+      left: 0;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--forest-green);
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 0;
+    }
+
+    .footer p {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer a {
+      color: var(--warm-cream);
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    .footer small {
+      opacity: 0.8;
+    }
+
+    /* Responsive Design */
+    @media (min-width: 768px) {
+      .logo-text p {
+        display: block;
+      }
+
+      .mobile-menu-btn {
+        display: none;
+      }
+
+      .nav-menu {
+        display: flex;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+      }
+
+      .hero {
+        min-height: 70vh;
+      }
+
+      #about {
+        min-height: 60vh;
+      }
+
+      #stays {
+        min-height: 80vh;
+      }
+
+      .brands-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .about-hero {
+        grid-template-columns: 2fr 1fr;
+        text-align: left;
+      }
+
+      .about-hero .about-text {
+        text-align: left;
+      }
+
+      .about-hero .about-text p {
+        text-align: left;
+        margin-left: 0;
+        margin-right: 0;
+      }
+
+      .riley-photo {
+        justify-self: end;
+      }
+
+      .section-logo {
+        width: 150px;
+        height: 150px;
+      }
+
+      .awards-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .amenities-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      /* Parallax effect on larger screens */
+      .hero, #about, #stays, #penalty-box {
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center center;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .gallery-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .amenities-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .hero {
+        min-height: 80vh;
+      }
+
+      #about {
+        min-height: 70vh;
+      }
+
+      #stays {
+        min-height: 90vh;
+      }
+    }
+
+    /* Mobile background optimizations */
+    @media (max-width: 767px) {
+      .hero, #about, #stays, #penalty-box {
+        background-attachment: scroll;
+        background-size: cover;
+        background-position: center center;
+      }
+
+      .hero {
+        min-height: 50vh;
+        padding: 2rem 0;
+      }
+
+      #about {
+        min-height: 40vh;
+      }
+
+      #stays {
+        min-height: 60vh;
+      }
+
+      #penalty-box {
+        min-height: 40vh;
+      }
+
+      .section-logo {
+        width: 100px;
+        height: 100px;
+      }
+    }
+  </style>
 </head>
 <body>
-  
-  <main class="hero-section">
-    <!-- Shared Header - Loaded by JavaScript -->
-    <div id="shared-header-placeholder"></div>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <a href="#home" class="logo">
+        <img src="assets/img/rltc.png" alt="Rainy Lake Trading Co.">
+        <div class="logo-text">
+          <h1>Rainy Lake Trading Co.</h1>
+          <p>Northwestern Ontario Business</p>
+        </div>
+      </a>
+      <nav class="nav-menu">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#about" class="nav-link">About Riley</a>
+        <a href="#stays" class="nav-link">Pine & Stone Stays</a>
+        <a href="#penalty-box" class="nav-link">Penalty Box Canteen</a>
+      </nav>
+      <button class="mobile-menu-btn">☰</button>
+    </div>
+  </header>
 
-    <!-- Hero content -->
+  <!-- Hero Section -->
+  <section id="home" class="section hero">
     <div class="hero-content">
-      <div class="hero-text">
-        <h1>Northwestern Ontario hospitality, Fort Frances style</h1>
-        <p>Rainy Lake Trading Co. is home to all our ventures — cozy places to stay, comfort food that hits the spot, and whatever comes next. We're proudly rooted in Fort Frances, serving up experiences that feel like home with that warm small-town welcome.</p>
-      </div>
-
-      <!-- Featured brands preview -->
-      <div class="brands-preview">
+      <h1>Northwestern Ontario hospitality, Fort Frances style</h1>
+      <p>Rainy Lake Trading Co. is home to all our ventures — cozy places to stay, comfort food that hits the spot, and whatever comes next. We're proudly rooted in Fort Frances, serving up experiences that feel like home with that warm small-town welcome.</p>
+      
+      <div class="brands-grid">
         <div class="brand-card">
           <img src="assets/img/tpbc.png" alt="The Penalty Box Canteen Fort Frances Northwestern Ontario" class="brand-logo">
           <h3>Penalty Box Canteen</h3>
@@ -102,14 +735,271 @@
           <img src="assets/img/pass.png" alt="Pine & Stone Stays Fort Frances Short Term Rental Northwestern Ontario" class="brand-logo">
           <h3>Pine & Stone Stays</h3>
           <p>Fort Frances short-term rental — Premium Northwestern Ontario accommodation for entrepreneurs & business travelers</p>
-          <a href="/stays" class="brand-link">Book Your Stay →</a>
+          <a href="#stays" class="brand-link">View Details →</a>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Shared Footer - Loaded by JavaScript -->
-    <div id="shared-footer-placeholder"></div>
-  </main>
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="section-content">
+      <img src="assets/img/rltc.png" alt="RLTC Logo" class="section-logo">
+      <h2>Meet Riley</h2>
+      
+      <div class="about-hero">
+        <div class="about-text">
+          <h3>Award-winning Fort Frances entrepreneur</h3>
+          <p>Hi, I'm Riley! I'm passionate about travel, kayaking, and photography, and I run businesses that reflect the best of Northwestern Ontario. Working in IT by day and running food service ventures by passion, I believe in creating spaces and experiences that feel authentic, welcoming, and rooted in place.</p>
+          
+          <p>As a host and business owner, I'm respectful, tidy, and focused on creating simple, modern spaces with homey but hotel-like vibes — perfect for guests who want an easy, comfortable stay and partners who want reliable service.</p>
+          
+          <p>Rainy Lake Trading Co. is my way of bringing together all the ventures that matter to me, from cozy accommodations to comfort food, all while showcasing what makes Fort Frances special.</p>
+        </div>
+        
+        <div class="about-photo">
+          <img src="assets/img/riley-photo.jpg" alt="Riley Pollard - Fort Frances Entrepreneur" class="riley-photo">
+        </div>
+      </div>
 
+      <div class="awards-grid">
+        <div class="award-card">
+          <div class="award-icon">🏆</div>
+          <h4>Young Entrepreneur Award</h4>
+          <p class="award-org">Fort Frances Chamber of Commerce</p>
+          <p class="award-desc">Recognized for innovative business development and community contribution in Northwestern Ontario.</p>
+        </div>
+        
+        <div class="award-card">
+          <div class="award-icon">⭐</div>
+          <h4>Customer Service Excellence</h4>
+          <p class="award-org">Fort Frances Chamber of Commerce</p>
+          <p class="award-desc">Awarded to The Penalty Box Canteen for outstanding customer service and community engagement.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pine & Stone Stays Section -->
+  <section id="stays" class="section">
+    <div class="section-content">
+      <img src="assets/img/pass.png" alt="Pine & Stone Stays Logo" class="section-logo">
+      <h2>Pine & Stone Stays</h2>
+      
+      <div class="about-text">
+        <h3>Northwestern Ontario comfort made simple</h3>
+        <p>Pine & Stone Stays creates cozy, authentic experiences for travelers who want something clean, comfortable, and real. Our first property — a freshly renovated urban basement retreat in Fort Frances — is perfect for entrepreneurs, business travelers, and anyone seeking that "unpack, relax, and feel at home" kind of stay.</p>
+      </div>
+
+      <!-- Booking Links -->
+      <div class="brands-grid">
+        <div class="brand-card">
+          <h3>Book Our Urban Basement Retreat</h3>
+          <a href="https://airbnb.com/h/pineandstonebasement" target="_blank" class="brand-link">Book on Airbnb →</a>
+        </div>
+        <div class="brand-card">
+          <h3>Also Available</h3>
+          <a href="https://www.vrbo.com/en-ca/cottage-rental/p20199907" target="_blank" class="brand-link">View on VRBO →</a>
+        </div>
+      </div>
+
+      <!-- Photo Gallery -->
+      <h3>Photo Gallery</h3>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="assets/img/pine-stone-main.jpg" alt="Fort Frances Short Term Rental Main Living Area" loading="lazy">
+          <div class="photo-overlay">Main Living Area</div>
+        </div>
+        <div class="gallery-item">
+          <img src="assets/img/pine-stone-bedroom.jpg" alt="Fort Frances Accommodation Queen Bedroom" loading="lazy">
+          <div class="photo-overlay">Queen Bedroom</div>
+        </div>
+        <div class="gallery-item">
+          <img src="assets/img/pine-stone-bathroom.jpg" alt="Fort Frances Rental Private Bathroom" loading="lazy">
+          <div class="photo-overlay">Private Bathroom</div>
+        </div>
+        <div class="gallery-item">
+          <img src="assets/img/pine-stone-workspace.jpg" alt="Fort Frances Entrepreneur Workspace" loading="lazy">
+          <div class="photo-overlay">Work Space</div>
+        </div>
+      </div>
+
+      <!-- Amenities -->
+      <h3>What Our Urban Basement Retreat Offers</h3>
+      <div class="amenities-grid">
+        <div class="amenity-category">
+          <h4>🛏️ Bedroom & Comfort</h4>
+          <ul>
+            <li>Queen bed with cozy bedding</li>
+            <li>Fresh towels & bed linens</li>
+            <li>Free washer & dryer in unit</li>
+            <li>Central air conditioning & heating</li>
+          </ul>
+        </div>
+
+        <div class="amenity-category">
+          <h4>💼 Business & Remote Work</h4>
+          <ul>
+            <li>Ultra-fast WiFi (344 Mbps)</li>
+            <li>Dedicated standing desk workspace</li>
+            <li>Ergonomic office chair</li>
+            <li>55-inch HDTV for presentations</li>
+          </ul>
+        </div>
+
+        <div class="amenity-category">
+          <h4>🍽️ Kitchen & Dining</h4>
+          <ul>
+            <li>Mini fridge</li>
+            <li>Keurig coffee machine</li>
+            <li>Microwave & toaster</li>
+            <li>Dishes & silverware</li>
+          </ul>
+        </div>
+
+        <div class="amenity-category">
+          <h4>🌲 Outdoor Oasis</h4>
+          <ul>
+            <li>Screened-in patio</li>
+            <li>Blackstone griddle</li>
+            <li>Fire table for cozy evenings</li>
+            <li>Outdoor fridge & Bluetooth speakers</li>
+          </ul>
+        </div>
+
+        <div class="amenity-category">
+          <h4>📍 Fort Frances Location</h4>
+          <ul>
+            <li>Downtown Fort Frances location</li>
+            <li>Walking distance to Rainy Lake</li>
+            <li>Close to US border crossing</li>
+            <li>Near local restaurants & shops</li>
+          </ul>
+        </div>
+
+        <div class="amenity-category">
+          <h4>🚴 Activities & Extras</h4>
+          <ul>
+            <li>Bicycle available for guest use</li>
+            <li>Kayak rental available</li>
+            <li>Free street parking</li>
+            <li>Self check-in with smart lock</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Penalty Box Canteen Section -->
+  <section id="penalty-box" class="section">
+    <div class="section-content">
+      <img src="assets/img/tpbc.png" alt="The Penalty Box Canteen Logo" class="section-logo">
+      <h2>The Penalty Box Canteen</h2>
+      
+      <div class="about-text">
+        <h3>Unique arena food experience in Fort Frances</h3>
+        <p>The Penalty Box Canteen is a community-rooted food concession inside the Memorial Sports Centre in Fort Frances, Ontario. Founded by Riley Pollard in 2024 with the mission of delivering a fast, fun, high-quality arena food experience that blends hockey culture, nostalgia, and local pride.</p>
+        
+        <p>From classic arena favorites to creative comfort food combinations, we serve the Fort Frances hockey community and visitors with pride, bringing that authentic hockey canteen vibe that feels like home.</p>
+      </div>
+
+      <!-- Features Grid -->
+      <div class="amenities-grid">
+        <div class="amenity-category">
+          <h4>🏒 Hockey Culture</h4>
+          <ul>
+            <li>Located inside Memorial Sports Centre</li>
+            <li>Authentic arena food experience</li>
+            <li>Supporting local hockey community</li>
+            <li>Classic canteen atmosphere</li>
+          </ul>
+        </div>
+
+        <div class="amenity-category">
+          <h4>🍟 Menu Favorites</h4>
+          <ul>
+            <li>Fresh-made arena classics</li>
+            <li>Comfort food combinations</li>
+            <li>Fast service for game time</li>
+            <li>Quality ingredients sourced locally</li>
+          </ul>
+        </div>
+
+        <div class="amenity-category">
+          <h4>🏆 Community Pride</h4>
+          <ul>
+            <li>Métis-owned business</li>
+            <li>Fort Frances community rooted</li>
+            <li>Supporting local events</li>
+            <li>Award-winning customer service</li>
+          </ul>
+        </div>
+
+        <div class="amenity-category">
+          <h4>📍 Memorial Sports Centre</h4>
+          <ul>
+            <li>Inside Fort Frances arena</li>
+            <li>Perfect for game day dining</li>
+            <li>Easy access during events</li>
+            <li>Part of the hockey experience</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Order Now Section -->
+      <div class="brands-grid">
+        <div class="brand-card">
+          <h3>Order Online</h3>
+          <p>Skip the line and order ahead for pickup during games and events</p>
+          <a href="https://order.penaltyboxcanteen.com" target="_blank" class="brand-link">Order Now →</a>
+        </div>
+        <div class="brand-card">
+          <h3>Visit Us</h3>
+          <p>Find us inside Memorial Sports Centre during hockey games and community events</p>
+          <a href="#about" class="brand-link">Learn More About Riley →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p><a href="#home">Rainy Lake Trading Co.</a> • <a href="#stays">Pine & Stone Stays</a> • <a href="#penalty-box">Penalty Box Canteen</a> • <a href="#about">About Riley</a></p>
+    <small>Fort Frances, Northwestern Ontario business collective • Serving the Rainy River District with northern pride and entrepreneurial spirit since 2024</small>
+  </footer>
+
+  <script>
+    // Simple smooth scrolling for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Mobile menu toggle (basic functionality)
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    mobileMenuBtn.addEventListener('click', function() {
+      navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+      if (navMenu.style.display === 'flex') {
+        navMenu.style.position = 'absolute';
+        navMenu.style.top = '100%';
+        navMenu.style.left = '0';
+        navMenu.style.right = '0';
+        navMenu.style.background = 'white';
+        navMenu.style.flexDirection = 'column';
+        navMenu.style.padding = '1rem';
+        navMenu.style.boxShadow = '0 4px 20px rgba(61, 92, 85, 0.1)';
+      }
+    });
+  </script>
 </body>
 </html>
